@@ -28,7 +28,7 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <div className="grey-box">
+            <div className="footer-container">
                 <div className="newsletter">
                     <h4 className="newsletter-title">Newsletter</h4>
                     {this.state.submitted ? 

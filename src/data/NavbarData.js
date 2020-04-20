@@ -1,4 +1,3 @@
-import React from 'react'
 import navbarCollectionsChloe from '../images/navbar-collections-chloe.jpg';
 import navbarCollectionsSee from '../images/navbar-collections-see.jpg';
 import navbarMaisonAlphabet from '../images/navbar-maison-alphabet.jpg';
@@ -20,7 +19,7 @@ export default [
         "accessories": ["New arrivals", "Wallets", "Small leather goods", "Jewellery", "Sunglasses", "More Accessories", "Personalisation"],
         },
         others: ["summer 2020", "new arrivals", "unicef", "children", "fragrances", "personalisation", "chloé signatures"],
-        css: "shop-chloe",
+        slug: "shop/chloe",
     },
     {
         title: "see by chloé",
@@ -30,7 +29,7 @@ export default [
         "accessories": ["New arrivals", "Wallets", "Small leather goods", "Shoes"],
         "new arrivals": [],
         },
-        css: "shop-see",
+        slug: "shop/see",
     },
     {
         title: "collections",

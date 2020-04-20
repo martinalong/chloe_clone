@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import data from '../data/NavbarData';
 import {FiSearch, FiUser, FiShoppingBag} from 'react-icons/fi';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import logo from '../images/chloe-logo.svg';
 
 function formatSlug(slug) {
@@ -74,15 +74,13 @@ export default class Navbar extends Component {
       
     render() {
         let brownLinks = data.map((item, index) => (
-            <Link to={"/shop/" + formatSlug(item.title)}>
-                <h3 className="navbar-link brown" onMouseEnter = {() => this.handleMouseEnter({index})}>
-                    {
-                        this.state.home ?
-                        item.title : 
-                        <span class="span">{item.title}</span>
-                    }
-                </h3>
-            </Link>
+            <h3 className="navbar-link" onMouseEnter = {() => this.handleMouseEnter({index})}>
+                {
+                    this.state.home ?
+                    <Link to={"/shop/" + formatSlug(item.title)} className="brown">{item.title}</Link>: 
+                    <span className="span"><NavLink to={"/shop/" + formatSlug(item.title)} className='brown' activeClassName='underline-nav'>{item.title}</NavLink></span>
+                }
+            </h3>
         ));
         let beigeLinks = data.map((item, index) => (
             <Link to={"/shop/" + formatSlug(item.title)}>

@@ -15,7 +15,7 @@ export default class Hero extends Component {
     render() {
         if (this.state.home) {
             return (
-                <div>
+                <div className="hero-container">
                     <div className="overlay">
                         <img src={logo} className="logo-home"/>
                         <h2 className="home-caption">{this.caption}</h2>
