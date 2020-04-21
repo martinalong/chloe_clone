@@ -589,7 +589,7 @@ export default {
             }
         }
     },
-    'see': {
+    'see-by-chloe': {
         "title": "See by Chlo\u00e9",
         "ready-to-wear": {
             "title": "Ready-to-wear",

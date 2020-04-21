@@ -16,10 +16,14 @@ export default function App() {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/item/:slug" component={Item}/>
-            {/*inWishlist={this.inWishlist} inCart={this.inCart} addToWishlist={this.addToWishlist} addToCart={this.addToCart}*/}
+            <Route exact path="/shop/:collection" component={Catalog}/>
             <Route exact path="/shop/:collection/:category" component={Catalog}/>
             <Route exact path="/shop/:collection/:category/:subcategory" component={Catalog}/>
-            {/*<Route exact path="/cart" component={Cart}/>*/}
+            {/*<Route exact path="/runway/:collection/:season" component={Collection}/>
+            <Route exact path="/maison" component={Maison}/>
+            <Route exact path="/maison/:section" component={Maison}/>
+            <Route exact path="/chloegirls/:article" component={ChloeGirls}/>
+            <Route exact path="/cart" component={Cart}/>*/}
             <Route component={Error}/>
           </Switch>
         </Router>

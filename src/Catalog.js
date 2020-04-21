@@ -8,16 +8,25 @@ import Chance from 'chance';
 
 export default class Catalog extends Component {
     constructor(props) {
-        console.log('made it to constructor');
         super(props);
         let collection = this.props.match.params.collection;
         let category = this.props.match.params.category;
         let subcategory = this.props.match.params.subcategory;
         this.codes = [];
         var chance1 = new Chance(124);
-        if (catalogData.hasOwnProperty(collection)) {
+        if (catalogData.hasOwnProperty(collection) && (collection == "chloe" || collection == "see-by-chloe")) {
+            console.log("made it");
             collection = catalogData[collection];
-            if (collection.hasOwnProperty(category)) {
+            if (!category) {
+                for (let cat in collection) {
+                    if (cat != 'title') {
+                        
+                        this.codes.push(...(collection[cat]['new-arrivals']['codes']));
+                    }
+                }
+                this.codes = chance1.shuffle(this.codes);
+            }
+            else if (collection.hasOwnProperty(category)) {
                 category = collection[category];
                 if (!subcategory) {
                     for (let sub in category) {
