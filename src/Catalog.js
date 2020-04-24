@@ -15,12 +15,10 @@ export default class Catalog extends Component {
         this.codes = [];
         var chance1 = new Chance(124);
         if (catalogData.hasOwnProperty(collection) && (collection == "chloe" || collection == "see-by-chloe")) {
-            console.log("made it");
             collection = catalogData[collection];
             if (!category) {
                 for (let cat in collection) {
                     if (cat != 'title') {
-                        
                         this.codes.push(...(collection[cat]['new-arrivals']['codes']));
                     }
                 }

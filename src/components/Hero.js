@@ -19,7 +19,7 @@ export default class Hero extends Component {
                     <div className="overlay">
                         <img src={logo} className="logo-home"/>
                         <h2 className="home-caption">{this.caption}</h2>
-                        <Link to="/shop/new-arrivals"><h3 className="link-button hero-button">Discover new arrivals</h3></Link>
+                        <Link to="/shop/chloe"><h3 className="link-button hero-button">Discover new arrivals</h3></Link>
                     </div>
                     <img className="hero clipped" src={this.image} alt=""/>
                 </div>

@@ -47,7 +47,7 @@ class FeaturedSection extends Component {
                     <span id="pulsing-plus-1" onClick={() => this.handlePulseClick(1)}>
                         <div className="pulse"/>
                         <div className="plus-sign" id="plus-sign-1"/>
-                        {this.state.f1toggle ? <h3 id="f1popup" className="white-popup">Denise cup chain necklace<div className="price">$ 790</div></h3> : <></>}
+                        {this.state.f1toggle ? <h3 id="f1popup" className="white-popup"><Link to="/item/cod50240141dh">Denise cup chain necklace</Link><div className="price">$ 790</div></h3> : <></>}
                     </span>
                 </div>
                 <div>
@@ -55,7 +55,7 @@ class FeaturedSection extends Component {
                     <span id="pulsing-plus-2" onClick={() => this.handlePulseClick(2)}>
                         <div className="pulse"/>
                         <div className="plus-sign" id="plus-sign-2"/>
-                        {this.state.f2toggle ? <h3 id="f2popup" className="white-popup">Chloé c item<div className="price">$ 520</div></h3> : <></>}
+                        {this.state.f2toggle ? <h3 id="f2popup" className="white-popup"><Link to="/item/cod45504974kj">Chloé c item</Link><div className="price">$ 520</div></h3> : <></>}
                     </span>
                 </div>
             </div>
@@ -67,7 +67,7 @@ function StatementSection() {
     return (
         <div className="statement-pieces">
             <h4 className="statement">Accent your summer wardrobe with new statement pieces</h4>
-            <Link to="/shop/new-arrivals"><h3 className="link-button button-transparent">Shop now</h3></Link>
+            <Link to="/shop/chloe"><h3 className="link-button button-transparent">Shop now</h3></Link>
         </div>
     )
 }
@@ -77,7 +77,7 @@ function HeroSection() {
         <div className="hero2">
             <div className="hero2-content">
                 <h4 className="hero2-caption">Welcome Spring with new accessories in fresh palettes</h4>
-                <Link to="/shop/accessories"><h3 id="accessories-button" className="link-button">Shop now</h3></Link>
+                <Link to="/shop/chloe/accessories"><h3 id="accessories-button" className="link-button">Shop now</h3></Link>
             </div>
             <img className="hero2-image" src={homeImage2}/>
         </div>
@@ -94,7 +94,7 @@ function RunwayCarousel() {
                 freeScroll: false,
                 pageDots: false,
                 wrapAround: true,
-                adaptiveHeight: true,
+                adaptiveHeight: true
                 }}
             >
                 {images.map((image, index) => (
@@ -105,7 +105,7 @@ function RunwayCarousel() {
             </Carousel>
             <div className="white-box">
                 <h4 className="runway-caption">Spring Summer <span id="runway-number">2020</span> Collection</h4>
-                <span className="carousel-button"><Link to="/collections/spring-summer-2020"><h5 className="link-button button-transparent">Discover the collection</h5></Link></span>
+                <span ><Link to="/runway/chloe/spring-summer-2020-runway"><h5 className="carousel-button link-button button-transparent">Discover the collection</h5></Link></span>
             </div>
         </div>
     )

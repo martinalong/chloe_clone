@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css';
 import Home from './Home';
 import Catalog from './Catalog';
 import Item from './Item';
-import Cart from './Cart';
 import Error from './Error';
 import Footer from "./components/Footer";
 import {Switch, BrowserRouter as Router, Route, useParams} from 'react-router-dom';
@@ -32,6 +31,7 @@ export default function App() {
     </div>
   )
 }
+
 /*
 export default class App extends Component {
   constructor(props) {

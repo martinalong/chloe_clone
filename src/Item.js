@@ -5,25 +5,35 @@ import Error from './Error';
 import {IoIosHeartEmpty as HeartEmpty, IoIosHeart as Heart} from 'react-icons/io';
 import {MdPhone as Phone} from 'react-icons/md';
 import Parallax from 'react-rellax'
+import {useSelector, useDispatch} from 'react-redux';
+
+function WishlistComponent({code}) {
+    const dispatch = useDispatch();
+    return (
+        <h5 className='product-name wishlist' onClick={() => dispatch({type: "WISHLIST", item: code})}>
+            {useSelector(state => state.wishlist.has(code)) ? <Heart className=' heart fill-heart'/> : <HeartEmpty className='heart empty-heart'/>}Wishlist
+        </h5>
+    )
+}
+
+function CartComponent({code}) {
+    const dispatch = useDispatch();
+    return (
+        <h4 className='bag-button' onClick={() => dispatch({type: "CART", item: code})}>{useSelector(state => state.cart[code]) ? "In bag" : "Add to bag"}</h4>
+    )
+}
 
 export default class Item extends Component {
     constructor (props) {
         super(props);
-        
+        this.code = this.props.match.params.slug;
         this.handleToggle = this.handleToggle.bind(this);
-        this.addItemToCart = this.addItemToCart.bind(this);
-        this.addItemToWishlist = this.addItemToWishlist.bind(this);
-        //this.addToCart = props.addToCart;
-        //this.addToWishlist = props.addToWishlist;
         this.state = {
-            slug: this.props.match.params.slug,
             details: false,
             description: false,
-            shipping: false,
-            inCart: false, //props.inCart(this.code),
-            inWishlist: false, //props.inWishlist(this.code),
+            shipping: false
         };
-        this.code = this.state.slug;
+        
         try {
             this.data = inventory[this.code];
         } catch(err) {
@@ -39,16 +49,6 @@ export default class Item extends Component {
         } else if (toggled == "shipping") {
             this.setState({details: false, description: false, shipping: !this.state.shipping});
         }
-    }
-
-    addItemToCart() {
-        this.setState({inCart: true});
-        //this.addToCart(this.code);
-    }
-
-    addItemToWishlist() {
-        this.setState({inWishlist: !this.state.inWishlist});
-        //this.addToWishlist(this.code);
     }
 
     render() {
@@ -87,8 +87,8 @@ export default class Item extends Component {
                             <h4 className='product-blurb'>{blurb}</h4>
                             <h4 className='product-price'>$ {price}</h4>
                         </div>
-                        <h4 className='bag-button' onClick={this.addItemToCart}>{this.state.inCart ? "In bag" : "Add to Bag"}</h4>
-                        <h5 className='product-name wishlist' onClick={this.addItemToWishlist}>{this.state.inWishlist ? <Heart className=' heart fill-heart'/> : <HeartEmpty className='heart empty-heart'/>}Wishlist</h5>
+                        <CartComponent code={this.code}/>
+                        <WishlistComponent code={this.code}/>
                         <div>
                             <h5 className='info-header product-name' onClick={() => this.handleToggle('details')}><span className='info-header-text'>Product Details</span><span className='info-header-plus'>{this.state.details ? "-" : "+"}</span></h5>
                             <h6 className={this.state.details ? 'details show' : 'details hide'}>{details}</h6>
