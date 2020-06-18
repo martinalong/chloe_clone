@@ -1,13 +1,40 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css';
 import Home from './Home';
 import Catalog from './Catalog';
 import Item from './Item';
 import Error from './Error';
 import Footer from "./components/Footer";
-import {Switch, BrowserRouter as Router, Route, useParams} from 'react-router-dom';
+import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 
 export default function App() {
+  const [temp, setTemp] = useState(true)
+  useEffect(() => {
+    if (typeof Node === 'function' && Node.prototype) {
+      const originalRemoveChild = Node.prototype.removeChild;
+      Node.prototype.removeChild = function(child) {
+        if (child.parentNode !== this) {
+          if (console) {
+            console.error('Cannot remove a child from a different parent', child, this);
+          }
+          return child;
+        }
+        return originalRemoveChild.apply(this, arguments);
+      }
+    
+      const originalInsertBefore = Node.prototype.insertBefore;
+      Node.prototype.insertBefore = function(newNode, referenceNode) {
+        if (referenceNode && referenceNode.parentNode !== this) {
+          if (console) {
+            console.error('Cannot insert before a reference node from a different parent', referenceNode, this);
+          }
+          return newNode;
+        }
+        return originalInsertBefore.apply(this, arguments);
+      }
+    }
+  }, [temp])
+
   return (
     <div className="app">
       <div className="page">
@@ -18,11 +45,6 @@ export default function App() {
             <Route exact path="/shop/:collection" component={Catalog}/>
             <Route exact path="/shop/:collection/:category" component={Catalog}/>
             <Route exact path="/shop/:collection/:category/:subcategory" component={Catalog}/>
-            {/*<Route exact path="/runway/:collection/:season" component={Collection}/>
-            <Route exact path="/maison" component={Maison}/>
-            <Route exact path="/maison/:section" component={Maison}/>
-            <Route exact path="/chloegirls/:article" component={ChloeGirls}/>
-            <Route exact path="/cart" component={Cart}/>*/}
             <Route component={Error}/>
           </Switch>
         </Router>
@@ -31,63 +53,3 @@ export default function App() {
     </div>
   )
 }
-
-/*
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.inWishlist = this.inWishlist.bind(this);
-    this.state = {
-      cart: {},
-      wishlist: [],
-    }
-  }
-
-  inWishlist({code}) {
-    return this.state.wishlist.includes(code);
-  }
-
-  inCart({code}) {
-    return this.state.cart.includes(code);
-  }
-
-  addToWishlist({code}) {
-    let wished = this.state.wishlist;
-    if (this.state.wishlist.includes(code)) {
-      wished.remove(code);
-    } else {
-      wished.append(code);
-    }
-    this.setState({wishlist: wished})
-  }
-
-  addToCart({code}) {
-    let currCart = this.state.cart;
-    currCart[code] = currCart.hasOwnProperty(code) ? currCart[code] + 1 : 1;
-    this.setState({cart: currCart})
-  }
-
-
-  render() {
-    return (
-      <div className="app">
-        <div className="page">
-          <Router>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/item/:slug">
-                <Item inWishlist={this.inWishlist} inCart={this.inCart} addToWishlist={this.addToWishlist} addToCart={this.addToCart} code={slug}/>
-              </Route> 
-              <Route exact path="/shop/:slug" component={Catalog}/>
-              <Route exact path="/cart" component={Cart}/>
-              <Route component={Error}/>
-            </Switch>
-          </Router>
-        </div>
-        <Footer/>
-      </div>
-    );
-  }
-  
-}
-*/

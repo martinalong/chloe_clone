@@ -24,40 +24,40 @@ function CartComponent({code}) {
 }
 
 export default class Item extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        this.code = this.props.match.params.slug;
         this.handleToggle = this.handleToggle.bind(this);
         this.state = {
             details: false,
             description: false,
             shipping: false
         };
-        
-        try {
-            this.data = inventory[this.code];
-        } catch(err) {
-            this.data = null;
-        }
     }
 
     handleToggle(toggled) {
-        if (toggled == "details") {
+        if (toggled === "details") {
             this.setState({details: !this.state.details, description: false, shipping: false});
-        } else if (toggled == "description") {
+        } else if (toggled === "description") {
             this.setState({details: false, description: !this.state.description, shipping: false});
-        } else if (toggled == "shipping") {
+        } else if (toggled === "shipping") {
             this.setState({details: false, description: false, shipping: !this.state.shipping});
         }
     }
 
     render() {
-        if (!this.data) {
+        let code = this.props.match.params.slug;
+        let data
+        try {
+            data = inventory[code];
+        } catch(err) {
+            data = null;
+        }
+        if (!data) {
             return (
                 <Error/>
             )
         }
-        let {productName, blurb, price, details, images} = this.data;
+        let {productName, blurb, price, details, images} = data;
         images = images.map((link, i) => <img className='item-image' src={link} alt="" key={i}/>)
         details = details.trim('\n').split('\n\n');
         for (let i = 0; i < details.length; i++) {
@@ -66,8 +66,8 @@ export default class Item extends Component {
         details = details.map((item, i) => <p className='text-paragraphs' key={i}>{item}</p>)
 
         let description = null;
-        if (this.data.hasOwnProperty('description')) {
-            description = this.data.description.trim('\n').split('\n\n');
+        if (data.hasOwnProperty('description')) {
+            description = data.description.trim('\n').split('\n\n');
             for (let i = 0; i < description.length; i++) {
                 description[i] = description[i].split('\n').map((item, i) => <h4 className='text-lines' key={i}>{item}</h4>)
             }
@@ -87,8 +87,8 @@ export default class Item extends Component {
                             <h4 className='product-blurb'>{blurb}</h4>
                             <h4 className='product-price'>$ {price}</h4>
                         </div>
-                        <CartComponent code={this.code}/>
-                        <WishlistComponent code={this.code}/>
+                        <CartComponent code={code}/>
+                        <WishlistComponent code={code}/>
                         <div>
                             <h5 className='info-header product-name' onClick={() => this.handleToggle('details')}><span className='info-header-text'>Product Details</span><span className='info-header-plus'>{this.state.details ? "-" : "+"}</span></h5>
                             <h6 className={this.state.details ? 'details show' : 'details hide'}>{details}</h6>

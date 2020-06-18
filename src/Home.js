@@ -32,7 +32,7 @@ class FeaturedSection extends Component {
     }
 
     handlePulseClick(num) {
-        if (num == 1) {
+        if (num === 1) {
             this.setState({f1toggle: !this.state.f1toggle});
         } else {
             this.setState({f2toggle: !this.state.f2toggle});
@@ -47,7 +47,7 @@ class FeaturedSection extends Component {
                     <span id="pulsing-plus-1" onClick={() => this.handlePulseClick(1)}>
                         <div className="pulse"/>
                         <div className="plus-sign" id="plus-sign-1"/>
-                        {this.state.f1toggle ? <h3 id="f1popup" className="white-popup"><Link to="/item/cod50240141dh">Denise cup chain necklace</Link><div className="price">$ 790</div></h3> : <></>}
+                        {this.state.f1toggle ? <h3 id="f1popup" className="white-popup"><Link to="/item/cod50240141dh">Denise cup chain necklace</Link><div className="price">$ 790</div></h3> : <div></div>}
                     </span>
                 </div>
                 <div>
@@ -55,7 +55,7 @@ class FeaturedSection extends Component {
                     <span id="pulsing-plus-2" onClick={() => this.handlePulseClick(2)}>
                         <div className="pulse"/>
                         <div className="plus-sign" id="plus-sign-2"/>
-                        {this.state.f2toggle ? <h3 id="f2popup" className="white-popup"><Link to="/item/cod45504974kj">Chloé c item</Link><div className="price">$ 520</div></h3> : <></>}
+                        {this.state.f2toggle ? <h3 id="f2popup" className="white-popup"><Link to="/item/cod45504974kj">Chloé c item</Link><div className="price">$ 520</div></h3> : <div></div>}
                     </span>
                 </div>
             </div>
@@ -79,7 +79,7 @@ function HeroSection() {
                 <h4 className="hero2-caption">Welcome Spring with new accessories in fresh palettes</h4>
                 <Link to="/shop/chloe/accessories"><h3 id="accessories-button" className="link-button">Shop now</h3></Link>
             </div>
-            <img className="hero2-image" src={homeImage2}/>
+            <img className="hero2-image" src={homeImage2} alt=""/>
         </div>
     )
 }

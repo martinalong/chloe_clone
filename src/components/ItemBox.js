@@ -23,7 +23,7 @@ export default class ItemBox extends Component {
 
     render() {
         let {productName, blurb, images, price, details} = inventoryData[this.code];
-        if (details.indexOf('Color: ') != -1) {
+        if (details.indexOf('Color: ') !== -1) {
             details = details.substring(details.indexOf('Color: ') + 7, details.length);
             blurb = blurb.substring(0, blurb.indexOf(' in ') + 4) + details.substring(0, details.indexOf('\n'));
         } else {

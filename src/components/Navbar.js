@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import catalog from '../data/CatalogData';
-import {FiSearch, FiShoppingBag, FiMenu} from 'react-icons/fi';
+import {FiSearch, FiShoppingBag} from 'react-icons/fi';
 import {Link, NavLink} from 'react-router-dom';
 import logo from '../images/chloe-logo.svg';
 import algoliasearch from 'algoliasearch/lite';
@@ -101,7 +101,7 @@ export default class Navbar extends Component {
       
     render() {
         let links = Object.keys(catalog).map((item, index) => (
-            <h3 className={this.state.scroll ? "navbar-link navbar-link-small" : this.state.home ? "navbar-link navbar-link-large" : "navbar-link navbar-link-medium"} onMouseEnter = {() => this.handleMouseEnter({index})}>
+            <h3 key={index} className={this.state.scroll ? "navbar-link navbar-link-small" : this.state.home ? "navbar-link navbar-link-large" : "navbar-link navbar-link-medium"} onMouseEnter = {() => this.handleMouseEnter({index})}>
                 {
                     this.state.home && !this.state.scroll ?
                     <Link to={"/shop/" + item} className="beige-white">{catalog[item]['title']}</Link>: 

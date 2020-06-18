@@ -39,7 +39,7 @@ export default function CartComponent({name, enter, leave}) {
     return (
         <div className={name}><div className="white-cart-background" onMouseEnter={enter} onMouseLeave={leave}>
             <div className="cart-content">
-                <h2 className="cart-title">Shopping Cart ({count + " item"}{(count == 1) ? "" : "s"})</h2>
+                <h2 className="cart-title">Shopping Cart ({count + " item"}{(count === 1) ? "" : "s"})</h2>
                 <div className='cart-items'>{cartObj}</div>
                 <div className='line'/>
                 <h2 className="wishlist-title">Wishlist ({wishlist.length + " item"}{(wishlist.length === 1) ? "" : "s"})</h2>
